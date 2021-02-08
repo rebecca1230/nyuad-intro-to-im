@@ -1,7 +1,7 @@
 # Game: Catch the Ball
 This simple game is an inspiration from the bouncing ball example performed in class. A player has to catch all the balls that start falling from random x-positions at the top.
 
-### Output
+### Demo
 ![](output.gif)
 
 ### Process
