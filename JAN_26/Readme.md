@@ -8,7 +8,7 @@ First, I asked my suitemate to take a picture of me working on my laptop. Then I
 ![](output.png)
 
 ### Difficulty
-**Perfect Positioning** - To position the shapes to correct co-ordinates, I had to do trial and test multiple times.
+**Perfect Positioning** - To position the shapes to correct co-ordinates, I had to perform trial and test multiple times.
 
 ### What's interesting?
 One interesting element I was able to add is the laptop-on-table layout, with my laptop's brand name.
