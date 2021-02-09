@@ -9,7 +9,7 @@ SIMPLE BALL CATCHING GAME IN PROCESSING
 */
 
 public class Ball {
-  public float xPos, yPos; // horizontal and vertical position for ball
+  public PVector position = new PVector(); // horizontal and vertical position for ball
   public int radius; // radius of the ball
   public float speed; // the speed with which it falls down
 
@@ -22,15 +22,15 @@ public class Ball {
 
   // to set random x-position for ball at the top
   public void reset() {
-    this.xPos = random(width/3, width/1.2);
-    this.yPos = 40;
+    this.position.x = random(width/3, width/1.2);
+    this.position.y = 40;
   }
 
   // to display the ball on screen
   public void display() {
     noStroke();
     fill(65, 112, 130);
-    ellipse(this.xPos, this.yPos, this.radius, this.radius);
+    ellipse(this.position.x, this.position.y, this.radius, this.radius);
     this.update();
   }
 
@@ -38,15 +38,15 @@ public class Ball {
   public void update() {
     
     //if it misses the basket, game is over
-    if (this.yPos + this.radius/2 >= height - 80) {
+    if (this.position.y + this.radius/2 >= height - 80) {
       gameOver = true;
     }
     
     // incrementing y-position with speed
-    this.yPos += this.speed;
+    this.position.y += this.speed;
     
     // if it collides with the basket, add score
-    if (dist(this.xPos, this.yPos, basket.xPos, basket.yPos) <= basket.size/3) {
+    if (dist(this.position.x, this.position.y, basket.position.x, basket.position.y) <= basket.size/3) {
       score += 10;
       
       //incrementing speed
@@ -58,14 +58,14 @@ public class Ball {
 }
 
 public class Basket {
-  public float xPos, yPos; // horizontal and vertical positions
+  public PVector position = new PVector(); // horizontal and vertical positions
   public int size; // size of basket
   PImage img; // for the basket image
   
   Basket() {
     // basket moves with mouse position
-    this.xPos = mouseX;
-    this.yPos = height - 100;
+    this.position.x = mouseX;
+    this.position.y = height - 100;
     
     this.size = 100;
     this.img = loadImage("images/basket.png");
@@ -73,14 +73,14 @@ public class Basket {
   
   // to display the basket on screen
   public void display() {
-    image(this.img, this.xPos, this.yPos, this.size, this.size);
+    image(this.img, this.position.x, this.position.y, this.size, this.size);
     this.update();
   }
 
   // to update the basket's position with mouse position but horizontally
   public void update() {
     if (mouseX - this.size/2 > 0 && mouseX + this.size/2 < width) {
-      this.xPos = mouseX;
+      this.position.x = mouseX;
     }
   }
 }
