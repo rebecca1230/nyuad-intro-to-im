@@ -10,7 +10,7 @@ It would be a very hard approach to manually search for bitcoin price data going
 Here's the link to where I found the data: [Bitcoin Historical Data](https://www.kaggle.com/mczielinski/bitcoin-historical-data)
 
 ### Data Cleaning
-The data I had downloaded was over 80 MB, meaning that it contained so many data that would take a lot of time to load in Processing. So, I had to find a way to limit these columns on what I needed to plot the graph. As I would only require two fields - timestamp and value of bitcoin - to plot the graph, I used a simple python script to read data and filter only two columns from the data. Here's an example how I performed it:
+The data I had downloaded was about 96 MB, meaning that it contained so many data that would take a lot of time to load in Processing. So, I had to find a way to limit these columns on what I needed to plot the graph. As I would only require two fields-timestamp and value of bitcoin-to plot the graph, I used a simple python script to read data and filter only two columns from the data. Here's an example how I performed it:
 ```python
 import pandas as pd
 data = pd.read_csv("bitcoin_history.csv")
