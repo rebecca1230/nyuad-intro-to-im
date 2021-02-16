@@ -5,7 +5,7 @@ This is a data visualization project done in Processing to plot a graph of bitco
 ![](output.png)
 
 ### Data Collection
-It would be a very hard approach to manually search for bitcoin price data going through a ton of webpages from the internet. Therefore, I decided to search for existing dataset that's available on Kaggle.
+It would've been a very hard approach to manually search for bitcoin price data going through a ton of webpages from the internet. Therefore, I decided to search for existing dataset that's available on Kaggle.
 
 Here's the link to where I found the data: [Bitcoin Historical Data](https://www.kaggle.com/mczielinski/bitcoin-historical-data)
 
