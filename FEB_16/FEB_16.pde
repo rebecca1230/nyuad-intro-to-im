@@ -67,4 +67,9 @@ void draw() {
   popMatrix();
   
   text("TIMESTAMPS FROM DEC 1 - DEC 31", width / 2, height - margin / 2);
+  
+  // start and close value
+  textAlign(LEFT);
+  textSize(15);
+  text("START - $" + String.valueOf(int(split(database[0], ",")[1])) + "\nCLOSE - $" + String.valueOf(int(split(database[database.length - 1], ",")[1])), margin + 30, height - margin * 2);
 }
