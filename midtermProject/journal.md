@@ -32,10 +32,12 @@ Finally, I have come up with a good idea for the game. I have decided that the m
 
 ### Feb 24
 I tried searching for sprites of sub marines on the web, but most of them need payments for use. So, I have decided to create one myself. Here's what I was able to create from Adobe Photoshop.
+
 ![](images/submarine.png)
 
 ### Feb 25
 I also needed to create missiles for the submarine to fire. I think it looks good with the background, but it might change. Here's what it looks like at the moment:
+
 ![](images/missile.png)
 
 ### Feb 26
