@@ -1,12 +1,21 @@
-# Mid-term Project Journal
-I still need to figure out what would be an interesting name for the project - might be something like sailing in the Pacific or just boating in Pokhara (amazing place in my home country where you can enjoy boating on lakes with a wonderful view of mountains).
-
-The game would be about sailing a ship/boat in the ocean/lake and trying to successfully avoid obstacles such as dolphins, sharks, or pirates (in case there's ocean).
+# Journal: Marine Voyage in the Pacific
+The game would be about travelling in an infinite journey in the Pacific with a Submarine trying to successfully avoid sharks using missiles.
 
 ## Progress
-For now, I've been making my mind about what elements to include in the game and have also been collecting some sprites and backgrounds. I will start working on the code this weekend.
+I have completed most of the work for my project. There are a few final touches left and main menu + gameover screens to be added. Here's how it looks right now:
+
+![](output.gif)
+
+### What's left?
+- Audio (I already have the files ready, but implementation is necessary.)
+- Main Menu and Game Over screens
+- Final touches
+
+I expect to complete everything by tomorrow night (March 3).
 
 ### Feb 19
+I still need to figure out what would be an interesting name for the project - might be something like sailing in the Pacific or just boating in Pokhara (amazing place in my home country where you can enjoy boating on lakes with a wonderful view of mountains).
+
 I wanted to give a vibe of ocean/lake to the game. So, I started searching for free music on the web. I finally found a suitable background music called 'Deep Blue' by Benjamin Tissot from [this website.](https://www.bensound.com/royalty-free-music/track/deep-blue)
 
 ### Feb 20
@@ -17,5 +26,31 @@ The game also needs a good background image, so I tried searching for a good mar
 
 ### Feb 22
 The main character would also have to rotate towards the direction where the boat/ship is supposed to move. So, I reviewed the ```rotate()``` function in Processing to be more familiar with it. At this point, I am rethinking of the main character. Boat sounds childish, why not add an entire ship? But I need to find a good sprite for it, otherwise I might end up creating my own.
+
+### Feb 23
+Finally, I have come up with a good idea for the game. I have decided that the main character would be a Sub Marine that moves underwater and kills sharks that come across its way. It will run infinitely and the score will be added.
+
+### Feb 24
+I tried searching for sprites of sub marines on the web, but most of them need payments for use. So, I have decided to create one myself. Here's what I was able to create from Adobe Photoshop.
+![](images/submarine.png)
+
+### Feb 25
+I also needed to create missiles for the submarine to fire. I think it looks good with the background, but it might change. Here's what it looks like at the moment:
+![](images/missile.png)
+
+### Feb 26
+I have started working on the code today. I had already sketched what classes to make and what variables would they store and how the game's flow would work like. So, it was pretty easy creating the basic structure. However, the background looks dull, so I need something to make it interesting. Maybe a parallex effect?
+
+### Feb 27
+I have collected some good marine graphics to include on the project. Today, I was able to create a parallex effect in Processing. Quite a tricky one, but it looks super good and it feels like the character would move more smoothly.
+
+### Feb 28
+Today, I worked on the main character's movement. It was difficult figuring out how to rotate the submarine towards the mouse position, but a combination of ```pushMatrix()```, ```popMatrix()```, ```translate()```, and ```rotate()``` did the trick. The movement is similar to the game Among Us where you click the position that you want to go, but it'll only be vertical in this game.
+
+### March 1
+I managed to add sprite animations to the characters - Submarine, Shark, and Missile. The game looks lively now. Sharks come from a random y-position in the right and approach towards the Submarine. The Submarine has to throw missiles to avoid them and get them out of the way. I also added a Score text which will be increased when a missile hits the shark.
+
+### March 2
+I wanted to add something quickly that when a missile hits the shark, the Shark as well as the Missile gets removed from the ```ArrayList```. This way, the objects disappear from the game per requirement and increment of score is also triggered.
 
 To be continued...
