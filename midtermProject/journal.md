@@ -41,10 +41,10 @@ I also needed to create missiles for the submarine to fire. I think it looks goo
 ![](images/missile.png)
 
 ### Feb 26
-I have started working on the code today. I had already sketched what classes to make and what variables would they store and how the game flow would look like. So, it was pretty easy creating the basic structure. However, the background looks dull, so I need something to make it interesting. Maybe a parallex effect?
+I have started working on the code today. I had already sketched what classes to make and what variables would they store and how the game flow would look like. So, it was pretty easy creating the basic structure. However, the background looks dull, so I need something to make it interesting. Maybe a parallax effect?
 
 ### Feb 27
-I have collected some good marine graphics to include on the project. Today, I was able to create a parallex effect in Processing. Quite a tricky one, but it looks super good and it feels like the character would move more smoothly.
+I have collected some good marine graphics to include on the project. Today, I was able to create a parallax effect in Processing. Quite a tricky one, but it looks super good and it feels like the character would move more smoothly.
 
 ### Feb 28
 Today, I worked on the main character's movement. It was difficult figuring out how to rotate the submarine towards the mouse position, but a combination of ```pushMatrix()```, ```popMatrix()```, ```translate()```, and ```rotate()``` did the trick. The movement is similar to the game Among Us where you click the position that you want to go, but it'll only be vertical in this game.
