@@ -21,7 +21,6 @@
 */
 
 import processing.sound.*;
-
     
 public class Background {
   private PImage img;
