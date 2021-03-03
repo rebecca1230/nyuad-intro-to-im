@@ -20,6 +20,9 @@
  
 */
 
+import processing.sound.*;
+
+    
 public class Background {
   private PImage img;
   private PImage[] subImg;
@@ -174,6 +177,8 @@ public class Shark {
       Missile missile = game.missiles.get(i);
       if (dist(missile.position.x, missile.position.y, position.x, position.y) < size / 2) {
         game.explosions.add(new Explosion(missile.position.x + 30, missile.position.y));
+        game.explosionAudio.play();
+        
         game.missiles.remove(missile);
         game.sharks.remove(this);
 
@@ -183,6 +188,7 @@ public class Shark {
 
     if (dist(game.submarine.position.x, game.submarine.position.y, position.x, position.y) < (game.submarine.size / 2 + size / 2 - 20)) {
       game.screen = 2;
+      game.gameoverAudio.play();
     }
   }
 }
@@ -316,6 +322,10 @@ public class Game {
 
   private String highScoreFile;
   private int highScore;
+  
+  public SoundFile backgroundAudio, missileAudio, explosionAudio, gameoverAudio, highscoreAudio;
+  
+  private boolean highScoreDisplayed;
 
   public Game() {
     screen = score = missed = 0;
@@ -333,6 +343,15 @@ public class Game {
 
     highScoreFile = "high-score.txt";
     highScore = readHighScore();
+    highScoreDisplayed = false;
+    
+    backgroundAudio = new SoundFile(midtermProject.this, "audio/background.mp3");
+    backgroundAudio.loop();
+    
+    missileAudio = new SoundFile(midtermProject.this, "audio/missile.wav");
+    explosionAudio = new SoundFile(midtermProject.this, "audio/explosion.wav");
+    gameoverAudio = new SoundFile(midtermProject.this, "audio/gameover.wav");
+    highscoreAudio = new SoundFile(midtermProject.this, "audio/highscore.wav");
   }
 
   public void update() {
@@ -403,6 +422,7 @@ public class Game {
     }
     
     case 3:{
+      backgroundAudio.stop();
       exit();
     }
     }
@@ -429,6 +449,11 @@ public class Game {
       textAlign(CENTER);
       textSize(35);
       text("NEW HIGH SCORE!", width / 2, 45);
+      
+      if(!highScoreDisplayed){
+        highscoreAudio.play();
+        highScoreDisplayed = true;
+      }
     }
   }
   
@@ -463,6 +488,7 @@ public class Game {
   }
 
   private void restart() {
+    backgroundAudio.stop();
     game = new Game();
     game.screen = 1;
   }
@@ -473,6 +499,11 @@ void setup() {
   size(1100, 684);
   imageMode(CENTER);
 
+  background(0);
+  fill(255);
+  textAlign(CENTER);
+  textSize(25);
+  text("Loading...", width / 2, height / 2);
   game = new Game();
 }
 
@@ -483,5 +514,6 @@ void draw() {
 void keyPressed() {
   if (keyCode == 32 && game.missiles.size() < 4) {
     game.missiles.add(new Missile());
+    game.missileAudio.play();
   }
 }

@@ -53,6 +53,10 @@ Today, I worked on the main character's movement. It was difficult figuring out 
 I managed to add sprite animations to the characters - Submarine, Shark, and Missile. The game looks lively now. Sharks come from a random y-position in the right and approach towards the Submarine. The Submarine has to throw missiles to avoid them and get them out of the way. I also added a Score text which will be increased when a missile hits the shark.
 
 ### March 2
-I wanted to add something quickly - when a missile hits the shark, the Shark as well as the Missile gets removed from the ```ArrayList```. This way, the objects disappear from the game per requirement and increment of score is also triggered.
+I wanted to add something quickly before today's class - when a missile hits the shark, the Shark as well as the Missile gets removed from the ```ArrayList```. This way, the objects disappear from the game per requirement and increment of score is also triggered.
 
-To be continued...
+### March 3
+I have completed all the work needed to run the game. The Main Menu as well as the Game Over screen looks pretty good. One more feature I realized would be great was - recording high scores. As the game runs infinitely, the player would now have to beat their own score. Fun, right? Also, I had to change a couple of audio files to make the game more interesting (especially background music). I added a new audio named [New Dawn](https://www.bensound.com/royalty-free-music/track/new-dawn) by Bensound. Right now, it looks really cool and I'm very much satisfied with the work.
+
+
+Thank you!
