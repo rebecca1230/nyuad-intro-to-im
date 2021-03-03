@@ -3,22 +3,22 @@
  INTRO TO INTERACTIVE MEDIA
  PROF. MICHAEL SHILOH
  
- MIDTERM PROJECT BY
- AYUSH PANDEY
+ MIDTERM PROJECT BY AYUSH PANDEY
+ MARCH 4, 2021
  
  GAME TITLE
  Marine Voyage in the Pacific
  
  INSTRUCTIONS
- - Move the Submarine clicking and dragging the mouse up and down.
+ - Move the Submarine by clicking and dragging the mouse up and down.
  - Press SPACEBAR to fire Missiles.
  
  WIN/LOSE
- The game runs infinitely, so your task is to kill as many sharks as possible and beat your own high score.
- If you miss more than more than 5 sharks, you lose.
- If a shark reaches you before you kill it, you lose.
+ - The game runs infinitely, so your task is to kill as many sharks as you can and beat your own high score.
+ - If you miss more than more than 5 sharks, you lose.
+ - If a shark reaches you before you kill it, you lose.
  
- */
+*/
 
 public class Background {
   private PImage img;
