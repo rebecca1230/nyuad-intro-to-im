@@ -18,14 +18,14 @@
  If you miss more than more than 5 sharks, you lose.
  If a shark reaches you before you kill it, you lose.
  
-*/
+ */
 
 public class Background {
   private PImage img;
   private PImage[] subImg;
   private float xShift;
 
-  Background() {
+  public Background() {
     img = loadImage("images/marine.png");
 
     subImg = new PImage[3];
@@ -73,7 +73,7 @@ public class SubMarine {
   public int size;
   private float rotation, speed;
 
-  SubMarine() {
+  public SubMarine() {
     position = new PVector(100, random(100, height / 1.5));
     img = loadImage("images/submarine.png");
 
@@ -164,6 +164,10 @@ public class Shark {
     if (position.x < -200) {
       game.sharks.remove(this);
       game.missed++;
+
+      if (game.missed > 5) {
+        game.screen = 2;
+      }
     }
 
     for (int i = 0; i < game.missiles.size(); i++) {
@@ -189,7 +193,7 @@ public class Missile {
 
   private int imgCount, cropStart, size;
 
-  Missile() {
+  public Missile() {
     img = loadImage("images/missile.png");
     position = new PVector(game.submarine.position.x + 20, game.submarine.position.y + 35);
 
@@ -227,7 +231,7 @@ public class Explosion {
 
   private int imgCount, cropStart, size;
 
-  Explosion(float x, float y) {
+  public Explosion(float x, float y) {
     position = new PVector(x, y);
     img = loadImage("images/explosion.png");
 
@@ -248,6 +252,55 @@ public class Explosion {
   }
 }
 
+public class Button {
+  private PVector position;
+  private String txt;
+
+  private float w, h;
+
+  public Button(float x, float y, String txt) {
+
+    position = new PVector(x, y);
+    this.txt = txt;
+
+    w = 100;
+    h = 40;
+  }
+
+  public void display() {
+    rectMode(CENTER);
+    noFill();
+    stroke(255);
+    strokeWeight(2);
+    rect(position.x, position.y, w, h);
+
+    textAlign(CENTER);
+    textSize(20);
+    text(txt, position.x, position.y + 7);
+
+    handleClick();
+  }
+
+  private void handleClick() {
+    if (mousePressed) {
+      if (abs(mouseX - position.x) < w / 2 && abs(mouseY - position.y) < h / 2) {
+        switch(txt) {
+        case "PLAY":
+          game.screen = 1;
+          break;
+        case "EXIT":
+          game.screen = 3;
+          break;
+        case "RESTART":
+          game.restart();
+          break;
+        }
+      }
+    }
+  }
+}
+
+
 public class Game {
   private PFont font;
 
@@ -264,9 +317,8 @@ public class Game {
   private String highScoreFile;
   private int highScore;
 
-  Game() {
-    screen = 1;
-    score = missed = 0;
+  public Game() {
+    screen = score = missed = 0;
 
     font = createFont("fonts/big_noodle_titling.ttf", 32);
     textFont(font);
@@ -286,10 +338,22 @@ public class Game {
   public void update() {
     background.display();
     switch(screen) {
-    case 0:
-      break;
+    case 0:{
+      fill(scoreColor);
+      textSize(60);
+      textAlign(CENTER);
+      text("Marine Voyage", width / 2, height / 3.5);
+      textSize(30);
+      text("in the Pacific", width / 2, height / 3.5 + 30);
 
-    case 1:
+      Button play = new Button(width / 2 - 110 / 2, height / 3.5 + 90, "PLAY");
+      play.display();
+
+      Button exit = new Button(width / 2 + 110 / 2, height / 3.5 + 90, "EXIT");
+      exit.display();
+      break;
+    }
+    case 1:{
       submarine.display();
 
       if (frameCount % 100 == 0) {
@@ -310,32 +374,64 @@ public class Game {
         explosions.get(i).display();
       }
 
-      //score
-      textAlign(RIGHT);
-      fill(scoreColor);
-      textSize(35);
-      text("SCORE", width - 10, 35);
-      textSize(28);
-      text(score, width - 10, 65);
-
-      textAlign(LEFT);
-      textSize(35);
-      text("MISSED", 10, 35);
-      textSize(28);
-      text(missed, 10, 65);
-
+      showScores();
+      
       if (mousePressed) {
         mouseHandler();
       }
       break;
-    case 2:
+    }
+    case 2:{
       if (score > highScore) {
         newHighScore();
       }
+
+      fill(scoreColor);
+      textSize(60);
+      textAlign(CENTER);
+      text("GAME OVER", width / 2, height / 3.5);
+      textSize(30);
+      text((missed > 5) ? "MISSED MANY SHARKS": "YOU DIED", width / 2, height / 3.5 + 30);
+
+      Button restart = new Button(width / 2 - 110 / 2, height / 3.5 + 90, "RESTART");
+      restart.display();
+      
+      Button exit = new Button(width / 2 + 110 / 2, height / 3.5 + 90, "EXIT");
+      exit.display();
+      showScores();
       break;
+    }
+    
+    case 3:{
+      exit();
+    }
     }
   }
 
+  private void showScores() {
+    // score
+    textAlign(RIGHT);
+    fill(scoreColor);
+    textSize(35);
+    text("SCORE", width - 10, 35);
+    textSize(28);
+    text(score, width - 10, 65);
+
+    // missed sharks
+    textAlign(LEFT);
+    textSize(35);
+    text("MISSED", 10, 35);
+    textSize(28);
+    text(missed, 10, 65);
+    
+    // if high score is beaten
+    if(score > highScore){
+      textAlign(CENTER);
+      textSize(35);
+      text("NEW HIGH SCORE!", width / 2, 45);
+    }
+  }
+  
   private void mouseHandler() {
     submarine.update();
   }
@@ -364,6 +460,11 @@ public class Game {
     writer.print(score);
     writer.flush();
     writer.close();
+  }
+
+  private void restart() {
+    game = new Game();
+    game.screen = 1;
   }
 }
 
