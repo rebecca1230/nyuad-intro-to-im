@@ -1,17 +1,8 @@
 # Journal: Marine Voyage in the Pacific
-The game would be about travelling in an infinite journey in the Pacific with a Submarine trying to successfully avoid sharks using missiles.
+This game is about travelling in an infinite journey in the Pacific with a Submarine trying to successfully avoid sharks using missiles.
 
-## Progress
-I have completed most of the work for my project. There are a few final touches left and main menu + gameover screens to be added. Here's how it looks right now:
-
+## Output
 ![](output.gif)
-
-### What's left?
-- Audio (I already have the files ready, but implementation is necessary.)
-- Main Menu and Game Over screens
-- Final touches
-
-I expect to complete everything by tomorrow night (March 3).
 
 ### Feb 19
 I still need to figure out what would be an interesting name for the project - might be something like sailing in the Pacific or just boating in Pokhara (amazing place in my home country where you can enjoy boating on lakes with a wonderful view of mountains).
@@ -56,7 +47,6 @@ I managed to add sprite animations to the characters - Submarine, Shark, and Mis
 I wanted to add something quickly before today's class - when a missile hits the shark, the Shark as well as the Missile gets removed from the ```ArrayList```. This way, the objects disappear from the game per requirement and increment of score is also triggered.
 
 ### March 3
-I have completed all the work needed to run the game. The Main Menu as well as the Game Over screen looks pretty good. One more feature I realized would be great was - recording high scores. As the game runs infinitely, the player would now have to beat their own score. Fun, right? Also, I had to change a couple of audio files to make the game more interesting (especially background music). I added a new audio named [New Dawn](https://www.bensound.com/royalty-free-music/track/new-dawn) by Bensound. Right now, it looks really cool and I'm very much satisfied with the work.
-
+I have completed all the work needed to run the game. The Main Menu as well as the Game Over screen looks pretty good. One more feature I realized would be great was - recording high scores. As the game runs infinitely, the player would now have to beat their own score. Fun, right? Also, I had to change a couple of audio files to make the game more interesting (especially background music). Right now, it looks really cool and I'm very much satisfied with the work.
 
 Thank you!
