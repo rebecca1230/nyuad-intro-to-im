@@ -5,9 +5,13 @@ It is a single-player game where your task is to drive underwater in a submarine
 ![](output.gif)
 
 ### Instructions
-- 
-- 
-- 
+- Move the Submarine by clicking and dragging the mouse up and down.
+- Press SPACEBAR to fire Missiles.
+ 
+### WIN/LOSE
+- The game runs infinitely, so your task is to kill as many sharks as you can and beat your own high score.
+- If you miss more than more than 5 sharks, you lose.
+- If a shark reaches you before you kill it, you lose.
 
 ### Development Walkthrough
 **MAIN CHARACTER** - SubMarine
