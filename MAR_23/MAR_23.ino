@@ -1,11 +1,27 @@
-const int triggers[] = {A0, A1, A2, A3};
-const int lights[] = {7, 6, 5, 4};
+/*
+ * INTRO TO IM
+ * MAR 23, 2021
+ * 
+ * BOMB DEFUSAL GAME WITH LEDs & Switches
+ * 
+ * INSTRUCTIONS:
+ * The lights blink one by one in a random series starting from just one blink at first.
+ * The series keeps on increasing until you reach maxSteps.
+ * Your goal is to remember which lights blinked and press the corresponding buttons to diffuse the bomb.
+ * 
+ * If you mess up - All lights start blinking at the same time (BOMB BLASTS!)
+ * If you successfully complete the series, lights start blinking one by one in a sequence. (BOMB DEFUSED!)
+ */
 
+const int triggers[] = {A0, A1, A2, A3};  // switch pins
+const int lights[] = {7, 6, 5, 4};        // light pins
+
+// class that handles the game logic
 class Bomb {
   private:
-    int* goal;
-    int maxSteps;
-
+    int* goal;    // pointer to dynamic array that'll store the random light sequence
+    int maxSteps; // no. of steps for game
+  
   public:
     int step, next, pressed;
 
@@ -14,9 +30,9 @@ class Bomb {
       Serial.println("-----------------------");
 
       step = next = pressed = 0;
-      maxSteps = 3;
+      maxSteps = 10;              // change this to increase/decrease game difficulty
 
-      goal = new int[maxSteps];
+      goal = new int[maxSteps];   // dynamic array for light sequence
 
       for (int i = 0; i < maxSteps; i++) {
         goal[i] = random(0, 4);
@@ -25,6 +41,8 @@ class Bomb {
       this->newLevel();
     }
 
+    // method to proceed to new level
+    // on new level, you'll see the sequence you need to follow
     void newLevel() {
       next = goal[0];
       pressed = 0;
@@ -43,6 +61,7 @@ class Bomb {
       }
     }
 
+    // to handle button press and verify if the sequence was followed correctly
     void checkButtonPress() {
       for (int i = 0; i < 4; i++) {
         if (digitalRead(triggers[i]) == HIGH) {
@@ -67,6 +86,7 @@ class Bomb {
       }
     }
 
+    // method to check success/failure
     bool success() {
       if (step == maxSteps + 1) {
         return true;
@@ -75,8 +95,10 @@ class Bomb {
     }
 };
 
-Bomb* bomb;
+Bomb* bomb; // pointer for the Bomb class
+
 void setup() {
+  // setting pin modes
   for (int trigger : triggers) {
     pinMode(trigger, INPUT);
   }
@@ -86,27 +108,29 @@ void setup() {
   }
 
   Serial.begin(9600);
-  randomSeed(analogRead(A5));
-  
+  randomSeed(analogRead(A5)); // random seed for random() function
+
+  // initialization
   bomb = new Bomb();
 }
 
 void loop() {
-  if (bomb->step == -1) {
-    delete bomb;
-    lightWorks(false);
+  if (bomb->step == -1) {     // if the user messes up, step is set to -1
+    delete bomb;              // clearing the memory
+    lightWorks(false);        // to blink lights all at once (FAILURE)
 
     Serial.println("OOPS, BOMB HAS BLASTED!");
   } else if (!bomb->success()) {
-    bomb->checkButtonPress();
+    bomb->checkButtonPress(); // handling button press events
   } else {
-    delete bomb;
-    lightWorks(true);
+    delete bomb;              // clearing the memory
+    lightWorks(true);         // to blink lights in a sequence (WIN)
 
     Serial.println("CONGRATULATIONS! BOMB SUCCESSFULLY DEFUSED!");
   }
 }
 
+// function to handle blinks for SUCCESS/FAILURE states
 void lightWorks(bool win) {
   if (win) {
     for (int light : lights) {
