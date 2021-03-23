@@ -13,8 +13,8 @@
  * If you successfully complete the series, lights start blinking one by one in a sequence. (BOMB DEFUSED!)
  */
 
-const int triggers[] = {A0, A1, A2, A3};  // switch pins
-const int lights[] = {7, 6, 5, 4};        // light pins
+const int triggers[] = {A0, A1, A2, A3};  // switch pins (A0 - RED, A1 - GREEN, A2 - BLUE, A3 - YELLOW)
+const int lights[] = {7, 6, 5, 4};        // light pins (7 - RED, 6 - GREEN, 5 - BLUE, 4 - YELLOW)
 
 // class that handles the game logic
 class Bomb {
