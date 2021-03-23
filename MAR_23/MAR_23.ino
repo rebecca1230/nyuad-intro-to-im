@@ -9,7 +9,7 @@
    The series keeps on increasing until you reach maxSteps.
    Your goal is to remember which lights blinked and press the corresponding buttons to diffuse the bomb.
 
-   If you mess up - All lights start blinking at the same time (BOMB BLASTS!)
+   If you mess up, all lights start blinking at the same time (BOMB BLASTS!)
    If you successfully complete the series, lights start blinking one by one in a sequence. (BOMB DEFUSED!)
 */
 
@@ -41,7 +41,7 @@ class Bomb {
       this->newLevel();
     }
 
-    // destructor to clear memory set for goal
+    // destructor to clear memory
     ~Bomb() {
       delete[] this->goal;
     }
@@ -102,6 +102,7 @@ class Bomb {
 };
 
 Bomb* bomb; // pointer for the Bomb class
+int lightWorkState = 0;
 
 void setup() {
   // setting pin modes
@@ -121,22 +122,27 @@ void setup() {
 }
 
 void loop() {
-  if (bomb->step == -1) {     // if the user messes up, step is set to -1
-    delete bomb;              // clearing the memory
-    lightWorks(false);        // to blink lights all at once (FAILURE)
+  if (lightWorkState == 0) {
+    if (bomb->step == -1) {     // if the user messes up, step is set to -1
+      delete bomb;              // clearing the memory
+      lightWorkState = 2;                // to blink lights all at once (FAILURE)
 
-    Serial.println("OOPS, BOMB HAS BLASTED!");
-  } else if (!bomb->success()) {
-    bomb->checkButtonPress(); // handling button press events
+      Serial.println("OOPS, BOMB HAS BLASTED!");
+    } else if (!bomb->success()) {
+      bomb->checkButtonPress(); // handling button press events
+    } else {
+      delete bomb;              // clearing the memory
+      lightWorkState = 1;                // to blink lights in a sequence (WIN)
+
+      Serial.println("CONGRATULATIONS! BOMB SUCCESSFULLY DEFUSED!");
+    }
   } else {
-    delete bomb;              // clearing the memory
-    lightWorks(true);         // to blink lights in a sequence (WIN)
-
-    Serial.println("CONGRATULATIONS! BOMB SUCCESSFULLY DEFUSED!");
+    lightWorks(lightWorkState == 1 ? true : false);
   }
+
 }
 
-// function to handle blinks for SUCCESS/FAILURE states
+// function to handle blinks for SUCCESS/FAILURE lightWorkStates
 void lightWorks(bool win) {
   if (win) {
     for (int light : lights) {
