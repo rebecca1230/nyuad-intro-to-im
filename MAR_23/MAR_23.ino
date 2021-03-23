@@ -1,17 +1,17 @@
 /*
- * INTRO TO IM
- * MAR 23, 2021
- * 
- * BOMB DEFUSAL GAME WITH LEDs & Switches
- * 
- * INSTRUCTIONS:
- * The lights blink one by one in a random series starting from just one blink at first.
- * The series keeps on increasing until you reach maxSteps.
- * Your goal is to remember which lights blinked and press the corresponding buttons to diffuse the bomb.
- * 
- * If you mess up - All lights start blinking at the same time (BOMB BLASTS!)
- * If you successfully complete the series, lights start blinking one by one in a sequence. (BOMB DEFUSED!)
- */
+   INTRO TO IM
+   MAR 23, 2021
+
+   BOMB DEFUSAL GAME WITH LEDs & Switches
+
+   INSTRUCTIONS:
+   The lights blink one by one in a random series starting from just one blink at first.
+   The series keeps on increasing until you reach maxSteps.
+   Your goal is to remember which lights blinked and press the corresponding buttons to diffuse the bomb.
+
+   If you mess up - All lights start blinking at the same time (BOMB BLASTS!)
+   If you successfully complete the series, lights start blinking one by one in a sequence. (BOMB DEFUSED!)
+*/
 
 const int triggers[] = {A0, A1, A2, A3};  // switch pins (A0 - RED, A1 - GREEN, A2 - BLUE, A3 - YELLOW)
 const int lights[] = {7, 6, 5, 4};        // light pins (7 - RED, 6 - GREEN, 5 - BLUE, 4 - YELLOW)
@@ -21,7 +21,7 @@ class Bomb {
   private:
     int* goal;    // pointer to dynamic array that'll store the random light sequence
     int maxSteps; // no. of steps for game
-  
+
   public:
     int step, next, pressed;
 
@@ -37,8 +37,13 @@ class Bomb {
       for (int i = 0; i < maxSteps; i++) {
         goal[i] = random(0, 4);
       }
-      
+
       this->newLevel();
+    }
+
+    // destructor to clear memory set for goal
+    ~Bomb() {
+      delete[] this->goal;
     }
 
     // method to proceed to new level
@@ -67,10 +72,11 @@ class Bomb {
         if (digitalRead(triggers[i]) == HIGH) {
           if (next == i) {
             digitalWrite(lights[i], HIGH);
-
             delay(500);
+
             digitalWrite(lights[i], LOW);
             delay(500);
+
             pressed++;
             next = goal[pressed];
 
