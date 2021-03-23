@@ -21,7 +21,7 @@ If you successfully complete the series, lights start blinking one by one in a s
 
 
 ## Challenges
-- Taking note of which steps were performed successfully and finding when the user presses wrong button was quite tricky.
-- As there is no way to find the current time in Arduino, setting ```randomSeed()``` as time was not possible. I found on the Arduino Forum that we could set seed to ```analogRead()``` of an empty pin as an alternative.
+- Taking note of which steps were performed successfully and finding when the user presses wrong button were quite tricky.
+- As there is no way to find the current time in Arduino, setting ```randomSeed()``` to time was not possible. However, I found on the Arduino Forum that we could set it to ```analogRead()``` of an empty pin as an alternative.
 
 Thank you!
