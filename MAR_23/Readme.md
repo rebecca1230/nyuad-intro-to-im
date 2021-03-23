@@ -11,10 +11,12 @@ It is a simple puzzle game created using Arduino UNO by using LEDs and Switches.
 
 ## WIN/LOSE
 If you mess up the sequence, all lights start blinking at the same time (BOMB BLASTS!).
-![](images/success.gif)
+
+![](images/failure.gif)
 
 
 If you successfully complete the series, lights start blinking one by one in a sequence. (BOMB DEFUSED!)
+
 ![](images/success.gif)
 
 
