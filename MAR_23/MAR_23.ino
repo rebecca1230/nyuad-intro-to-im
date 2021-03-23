@@ -103,7 +103,7 @@ void loop() {
     delete bomb;
     lightWorks(true);
 
-    Serial.println("CONGRATULATIONS! BOMB SUCCESSFULLY DIFFUSED!");
+    Serial.println("CONGRATULATIONS! BOMB SUCCESSFULLY DEFUSED!");
   }
 }
 
