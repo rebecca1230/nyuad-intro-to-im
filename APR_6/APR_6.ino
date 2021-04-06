@@ -19,8 +19,8 @@
 #define buzzerPin 8         // pin for Buzzer
 #define servoPin 4          // pin for Servo
 
-#define redButton 3         // metronome Red (decrease speed) button
-#define greenButton 2       // metronome Green (increase speed) button
+#define redButton A1        // metronome Red (decrease speed) button
+#define greenButton A2      // metronome Green (increase speed) button
 
 #define echo 6              // HC-SR04 echo pin
 #define trig 7              // HC-SR04 trig pin
