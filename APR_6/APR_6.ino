@@ -17,7 +17,7 @@
 #include <Servo.h>          // importing Servo header file
 
 #define buzzerPin 8         // pin for Buzzer
-#define servoPin 4          // pin for Servo
+#define servoPin 9          // pin for Servo
 
 #define redButton A1        // metronome Red (decrease speed) button
 #define greenButton A2      // metronome Green (increase speed) button
