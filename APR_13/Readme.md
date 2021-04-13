@@ -17,7 +17,7 @@ The game starts with an empty grid where one block is generated at a random hori
 ![](images/output_arduino.jpg)
 
 
-![](images/output_processing.jpg)
+![](images/output_processing.png)
 
 
 
