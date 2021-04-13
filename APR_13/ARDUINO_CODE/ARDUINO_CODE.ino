@@ -1,41 +1,29 @@
-#define leftSwitch A0
-#define rightSwitch A1
+/*
+   INTRO TO IM
+   NYU ABU DHABI, SPRING 2021
 
-const int LEDs[] = {2, 3, 4, 5};
-int currentLight = -1;
+   AYUSH PANDEY
+   TETRIS RUSH WITH ARDUINO AND PROCESSING
+   APR 13, 2021
+*/
+
+#define leftSwitch A0     // switch to move LEFT, (BLUE) pin
+#define rightSwitch A1    // switch to move RIGHT, (YELLOW) pin
 
 void setup() {
+  // setting pin mode of switches as INPUT
   pinMode(leftSwitch, INPUT);
   pinMode(rightSwitch, INPUT);
-
-  for (int led : LEDs) {
-    pinMode(led, OUTPUT);
-  }
 
   Serial.begin(9600);
 }
 
 void loop() {
-  while (Serial.available()) {
-    int lightToGlow = constrain(Serial.parseInt(), 0, 3);
-    if (Serial.read() == '\n') {
-      currentLight = lightToGlow;
-    }
-  }
-
-  for (int i = 0; i < sizeof(LEDs) / sizeof(int); i++) {
-    if (i == currentLight) {
-      digitalWrite(LEDs[i], HIGH);
-    } else {
-      digitalWrite(LEDs[i], LOW);
-    }
-  }
-
-  if (digitalRead(leftSwitch) == HIGH) {
-    Serial.println("LEFT");
+  if (digitalRead(leftSwitch) == HIGH) {    // if left switch is pressed
+    Serial.println("LEFT");                 // sending data as LEFT
     delay(200);
-  } else if (digitalRead(rightSwitch) == HIGH) {
-    Serial.println("RIGHT");
+  } else if (digitalRead(rightSwitch) == HIGH) {  // if right switch is pressed
+    Serial.println("RIGHT");                // sending data as RIGHT
     delay(200);
   }
 }
