@@ -122,12 +122,12 @@ public class Game {
   // method to create a new block
   private void newBlock() {
     // getting random horizontal position on top of the blockList
-    int position = (int) random(0, 9);
+    int position = (int) random(0, 10);
 
     // checking if block already exists at the top, also making sure all positions are not filled
     int count = 0;
     while (this.getBlock(0, position).fillColor != colors.get(0) && count < 10) {
-      position = (int) random(0, 9);
+      position = (int) random(0, 10);
       count++;
     }
     
