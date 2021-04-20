@@ -13,5 +13,16 @@ Most of the work will be handled in Processing but the Arduino will be used to r
 
 ![](images/schematic.jpg)
 
+# Journal
+
+### APR 19, 2021
+The most challenging part of the project is to keep track of the notes played at a certain timestamp and play it altogether. Therefore, I wanted to create a framework to record the notes, add it to tracks, and play all of them together. I decided to create a ```LoopStation``` class to handle it.
+
+First, I was using ```millis()``` to keep track of the timestamp, but it appears that it skips certain milliseconds since the framerate is very high. This led to a problem where processing skipped notes at the exact timestamp. So, I worked around this problem with ```frameRate()``` and ```frameCount```.
+
+If there is a framerate of 60fps and loop duration of 8s (8 * 60 frames), I can find the exact point of note to be played by comparing ```frameCount % loopDuration == timestamp```. This resolved my issue.
+
+Right now, I have a good framework for the project ready where I can pass in any Note object and add it to the loop tracks. I can also create multiple tracks and the ```LoopStation``` class will handle everything for me.
+
 
 To be continued...
